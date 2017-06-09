@@ -20,4 +20,9 @@ RUN mkdir -p /deps/z3/ &&  wget https://github.com/Z3Prover/z3/archive/z3-4.5.0.
 COPY . /oyente/
 WORKDIR /oyente/
 
+RUN wget https://github.com/oyente/oyente/raw/master/benchmark/contract_data.zip -O contract_data.zip &&  \
+    unzip contract_data.zip &&  \
+    wget https://raw.githubusercontent.com/ethereum/dapp-bin/master/getting%20started/greeter.sol -O greeter.sol &&  \
+    python oyente.py -s greeter.sol
+
 CMD python oyente.py -ru https://gist.githubusercontent.com/loiluu/d0eb34d473e421df12b38c12a7423a61/raw/2415b3fb782f5d286777e0bcebc57812ce3786da/puzzle.sol
